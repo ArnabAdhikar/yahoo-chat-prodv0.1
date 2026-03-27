@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: yahoo-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      name: backend-pod
+      namespace: yahoo-chat
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: chatapp-backend
+          image: arnaba075/chatapp-backend:v5
+          ports:
+            - containerPort: 5000
+          env:
+              - name: MONGO_URI
+                value: "mongodb://root:root@mongodb-service:27017/yahoo-chat?authSource=admin"
+              - name: PORT
+                value: "5000"
+              - name: NODE_ENV
+                value: "production"
+              - name: JWT_SECRET
+                value: "313988f55e09c9bf48f57dc1fd6a45afcb716abbe16c19638d5709a485ef6041"

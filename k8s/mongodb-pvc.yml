@@ -1,0 +1,13 @@
+# persistant volume claim for mongodb
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+  namespace: yahoo-chat
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

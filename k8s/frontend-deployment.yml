@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: yahoo-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      name: frontend-pod
+      namespace: yahoo-chat
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: chatapp-frontend
+          image: arnaba075/chatapp-frontend:latest
+          ports:
+            - containerPort: 80
